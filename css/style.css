@@ -207,3 +207,55 @@ body {
     background-color: var(--roval-red);
     color: var(--roval-white);
 }
+
+/* ESTILOS DO MODAL*/
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--roval-white);
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.consultora-img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    margin: 1.5rem 0;
+}
+
+#qrcode-container img {
+    margin-top: 1rem;
+    border-radius: 10px;
+}
