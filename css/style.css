@@ -120,14 +120,17 @@ body {
     background-color: #25D366;
     color: var(--roval-white);
     border: none;
-    padding: 1.5rem;
-    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
     font-weight: bold;
-    border-radius: 15px;
+    border-radius: 10px;
     cursor: pointer;
     text-align: center;
-    box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);
-    transition: transform 0.2s;
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+    transition: all 0.2s;
+    width: auto;
+    align-self: center;
+    margin-top: 1.5rem;
 }
 
 .consultant-call-btn:active {

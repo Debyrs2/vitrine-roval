@@ -8,8 +8,8 @@ const produtos = [
 ];
 
 const consultoras = [
-    { nome: "Mariana", foto: "assets/imagens/MascFem.png", whatsapp: "5581900000000" },
-    { id: 2, nome: "Roberto", foto: "assets/imagens/MascMas.png", whatsapp: "5581911111111" }
+    { nome: "Y", foto: "assets/imagens/MascFem.png", whatsapp: "5581900000000" },
+    { id: 2, nome: "X", foto: "assets/imagens/MascMas.png", whatsapp: "5581911111111" }
 ];
 
 //SELEÇÃO DE ELEMENTOS DA TELA
