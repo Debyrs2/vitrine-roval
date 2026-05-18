@@ -21,23 +21,19 @@ const fecharModalBtn = document.getElementById('fecharModal');
 
 // FUNÇÃO: RENDERIZAR PRODUTOS
 function renderizarProdutos(categoriaFiltro) {
-    // Limpa a tela
     productsContainer.innerHTML = '';
 
-    // Filtra os produtos. Se for 'todos', pega o array inteiro.
-    const produtosFiltrados = categoriaFiltro === 'todos' 
-        ? produtos 
+    const produtosFiltrados = categoriaFiltro === 'todos'
+        ? produtos
         : produtos.filter(produto => produto.categoria === categoriaFiltro);
 
-    // Cria o HTML para cada produto e joga na tela
     produtosFiltrados.forEach(produto => {
         const card = document.createElement('div');
         card.classList.add('product-card');
         card.innerHTML = `
             <img src="${produto.imagem}" alt="${produto.nome}" class="product-img">
             <h3>${produto.nome}</h3>
-            <p>${produto.descricao}</p>
-            <button class="view-more-btn">Ver Detalhes</button>
+            <button class="view-more-btn" data-id="${produto.id}">Ver Detalhes</button>
         `;
         productsContainer.appendChild(card);
     });
@@ -80,3 +76,36 @@ fecharModalBtn.addEventListener('click', () => {
 
 // Inicia a tela mostrando todos os produtos
 renderizarProdutos('todos');
+
+//DETALHES DO PRODUTO 
+// Elementos do novo modal
+const modalProduto = document.getElementById('modalProduto');
+const fecharModalProduto = document.getElementById('fecharModalProduto');
+const btnVoltarVitrine = document.getElementById('btnVoltarVitrine');
+
+// Função para abrir e preencher o modal do produto
+function abrirDetalhesProduto(id) {
+    // Procura o produto correto pelo ID
+    const produtoSelecionado = produtos.find(p => p.id === Number(id));
+
+    if (produtoSelecionado) {
+        document.getElementById('modalProdutoNome').innerText = produtoSelecionado.nome;
+        document.getElementById('modalProdutoFoto').src = produtoSelecionado.imagem;
+        document.getElementById('modalProdutoDescricao').innerText = produtoSelecionado.descricao;
+
+        // Abre o modal adicionando a classe active
+        modalProduto.classList.add('active');
+    }
+}
+
+// Evento de clique nos botões "Ver Detalhes"
+productsContainer.addEventListener('click', (evento) => {
+    if (evento.target.classList.contains('view-more-btn')) {
+        const produtoId = evento.target.getAttribute('data-id');
+        abrirDetalhesProduto(produtoId);
+    }
+});
+
+// Fechar o modal de produtos
+fecharModalProduto.addEventListener('click', () => modalProduto.classList.remove('active'));
+btnVoltarVitrine.addEventListener('click', () => modalProduto.classList.remove('active'));
