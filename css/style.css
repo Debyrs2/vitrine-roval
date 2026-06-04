@@ -39,10 +39,10 @@ body {
     background-color: var(--roval-white);
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 1.5rem 3rem;
     border-bottom: 3px solid var(--roval-red);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    position: relative;
 }
 
 .kiosk-header .logo {
@@ -54,7 +54,10 @@ body {
     font-size: 1.8rem;
     color: var(--roval-red);
     font-weight: 600;
-    text-align: right;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* Corpo da aplicação */
