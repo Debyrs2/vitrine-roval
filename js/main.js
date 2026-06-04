@@ -1,4 +1,4 @@
-// DADOS FALSOS (MOCK) - Futuramente virão do Banco de Dados
+// DADOS FALSOS 
 const produtos = [
     { id: 1, nome: "Composto Antiox", categoria: "estetica", descricao: "Rejuvenescimento e brilho da pele.", imagem: "assets/imagens/MascFemPote.png" },
     { id: 2, nome: "Whey Isolado Roval", categoria: "fitness", descricao: "Ganho de massa magra com alta pureza.", imagem: "assets/imagens/MascMasFit.png" },
@@ -78,7 +78,6 @@ fecharModalBtn.addEventListener('click', () => {
 renderizarProdutos('todos');
 
 //DETALHES DO PRODUTO 
-// Elementos do novo modal
 const modalProduto = document.getElementById('modalProduto');
 const fecharModalProduto = document.getElementById('fecharModalProduto');
 const btnVoltarVitrine = document.getElementById('btnVoltarVitrine');
@@ -109,3 +108,25 @@ productsContainer.addEventListener('click', (evento) => {
 // Fechar o modal de produtos
 fecharModalProduto.addEventListener('click', () => modalProduto.classList.remove('active'));
 btnVoltarVitrine.addEventListener('click', () => modalProduto.classList.remove('active'));
+
+let tempoInativo;
+const tempoLimite = 3 * 60 * 1000; // 3 minutos em milissegundos
+const telaVideo = document.getElementById('telaVideoDescanso'); // Você precisará criar esta div no HTML cobrindo a tela toda
+
+function resetarTemporizador() {
+    clearTimeout(tempoInativo);
+    telaVideo.style.display = 'none'; // Esconde o vídeo quando há interação
+    
+    tempoInativo = setTimeout(() => {
+        telaVideo.style.display = 'flex'; // Mostra o vídeo após 3 minutos
+        // Aqui você também pode forçar a volta para a aba "Todos" e fechar modais abertos
+    }, tempoLimite);
+}
+
+// Escuta eventos de toque e clique no totem
+window.addEventListener('mousemove', resetarTemporizador);
+window.addEventListener('touchstart', resetarTemporizador);
+window.addEventListener('click', resetarTemporizador);
+
+// Inicia o contador assim que a página carrega
+resetarTemporizador();
