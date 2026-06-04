@@ -359,6 +359,7 @@ body {
     bottom: 30px;
     right: 30px;
     display: flex;
+    flex-direction: row-reverse;
     align-items: flex-end;
     gap: 10px;
     z-index: 900;
@@ -374,7 +375,7 @@ body {
     background: var(--roval-red);
     color: var(--roval-white);
     padding: 15px 20px;
-    border-radius: 20px 20px 20px 0;
+    border-radius: 20px 20px 0 20px;
     font-weight: 600;
     font-size: 1rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -386,7 +387,8 @@ body {
 .fechar-aviso {
     position: absolute;
     top: -10px;
-    right: -10px;
+    left: -10px;
+    right: auto;
     background: var(--roval-white);
     color: var(--roval-red);
     border: none;
@@ -400,16 +402,4 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-@keyframes flutuar {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
 }
