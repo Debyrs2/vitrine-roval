@@ -8,8 +8,20 @@ const produtos = [
 ];
 
 const consultoras = [
-    { nome: "Y", foto: "assets/imagens/MascFem.png", whatsapp: "5581900000000" },
-    { id: 2, nome: "X", foto: "assets/imagens/MascMas.png", whatsapp: "5581911111111" }
+    {
+        nome: "Y",
+        foto: "assets/imagens/MascFem.png",
+        whatsapp: "5581900000000",
+        genero: "feminino",
+        qrCode: "assets/imagens/qrcode_fem.png" // O QR Code exclusivo dela
+    },
+    {
+        nome: "X",
+        foto: "assets/imagens/MascMas.png",
+        whatsapp: "5581911111111",
+        genero: "masculino",
+        qrCode: "assets/imagens/qrcode_mas.png" // O QR Code exclusivo dele
+    }
 ];
 
 //SELEÇÃO DE ELEMENTOS DA TELA
@@ -53,17 +65,32 @@ categoryButtons.forEach(botao => {
     });
 });
 
-//FUNÇÃO: SORTEAR CONSULTORA
 function sortearConsultora() {
-    // Matemática do sorteio
+    // Sorteio interno 
     const indiceSorteado = Math.floor(Math.random() * consultoras.length);
     const consultora = consultoras[indiceSorteado];
 
-    // Preenche o Modal com os dados dela
-    document.getElementById('consultoraNome').innerText = consultora.nome;
-    document.getElementById('consultoraFoto').src = consultora.foto;
+    // Altera o Título de acordo com o gênero
+    const tituloModal = document.getElementById('modalConsultoraTitulo');
+    if (consultora.genero === "feminino") {
+        tituloModal.innerHTML = `Sua consultora é a <span id="consultoraNome">${consultora.nome}</span>`;
+    } else {
+        tituloModal.innerHTML = `Seu consultor é o <span id="consultorNome">${consultora.nome}</span>`;
+    }
 
-    // Abre o Modal
+    // Atualiza a Foto e o QR Code exato da pessoa sorteada
+    document.getElementById('consultoraFoto').src = consultora.foto;
+    document.getElementById('qrCodeFoco').src = consultora.qrCode;
+
+    // Monta a mensagem e o link do WhatsApp
+    const mensagemAutomatica = consultora.genero === 'feminino'
+        ? "Olá! Estava utilizando o totem e gostaria de falar com a farmacêutica."
+        : "Olá! Estava utilizando o totem e gostaria de falar com o farmacêutico.";
+
+    const btnWhats = document.getElementById('btnAbrirWhatsapp');
+    btnWhats.href = `https://wa.me/${consultora.whatsapp}?text=${encodeURIComponent(mensagemAutomatica)}`;
+
+    // Exibe na tela
     modal.classList.add('active');
 }
 
