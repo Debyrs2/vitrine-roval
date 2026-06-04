@@ -54,6 +54,7 @@ body {
     font-size: 1.8rem;
     color: var(--roval-red);
     font-weight: 600;
+    text-align: right;
 }
 
 /* Corpo da aplicação */
@@ -309,40 +310,45 @@ body {
     text-align: justify;
 }
 
-/*  REGRAS DE RESPONSIVIDADE*/
+/* REGRAS DE RESPONSIVIDADE */
 @media (max-width: 900px) {
     .kiosk-body {
-        flex-direction: column;
-        /* Sidebar vai para cima, produtos para baixo */
+        flex-direction: row;
     }
 
     .sidebar {
-        width: 100%;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        padding: 1.5rem;
-        gap: 1.5rem;
+        width: 180px;
+        /* Reduz a largura para não esmagar os produtos */
+        padding: 1.5rem 1rem;
+        gap: 1rem;
     }
 
     .categories-menu {
-        flex-direction: row;
-        /* Categorias ficam em linha horizontal no topo */
-        overflow-x: auto;
-        /* Rolagem passa a ser horizontal */
-        overflow-y: hidden;
-        max-height: none;
-        padding-bottom: 10px;
+        flex-direction: column;
+        overflow-y: auto;
     }
 
     .category-btn {
-        white-space: nowrap;
-        /* Impede o texto do botão de quebrar linha */
-        padding: 0.8rem 1.5rem;
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+        white-space: normal;
+        /* Permite que o texto quebre linha se for grande */
+    }
+
+    .consultant-call-btn {
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
     }
 
     .products-container {
         padding: 1.5rem;
         gap: 1.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        /* Cards de produtos menores */
+    }
+
+    .product-img {
+        width: 120px;
+        height: 120px;
     }
 }
