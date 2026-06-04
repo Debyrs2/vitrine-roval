@@ -116,10 +116,9 @@ const telaVideo = document.getElementById('telaVideoDescanso'); // Você precisa
 function resetarTemporizador() {
     clearTimeout(tempoInativo);
     telaVideo.style.display = 'none'; // Esconde o vídeo quando há interação
-    
+
     tempoInativo = setTimeout(() => {
         telaVideo.style.display = 'flex'; // Mostra o vídeo após 3 minutos
-        // Aqui você também pode forçar a volta para a aba "Todos" e fechar modais abertos
     }, tempoLimite);
 }
 
@@ -130,3 +129,19 @@ window.addEventListener('click', resetarTemporizador);
 
 // Inicia o contador assim que a página carrega
 resetarTemporizador();
+
+// CONTROLE DO AVISO DO MASCOTE
+const mascoteAviso = document.getElementById('mascoteAviso');
+const fecharAviso = document.getElementById('fecharAviso');
+
+// Permite que o cliente feche o aviso para limpar a tela
+fecharAviso.addEventListener('click', () => {
+    mascoteAviso.style.display = 'none';
+});
+
+//Esconder o aviso automaticamente assim que o cliente clicar no primeiro produto
+productsContainer.addEventListener('click', (evento) => {
+    if (evento.target.classList.contains('view-more-btn')) {
+        mascoteAviso.style.display = 'none';
+    }
+});
