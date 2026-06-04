@@ -59,18 +59,16 @@ categoryButtons.forEach(botao => {
         // Adiciona a classe 'active' só no botão clicado
         botao.classList.add('active');
 
-        // Pega a categoria do botão (data-category do HTML) e renderiza
+        // Pega a categoria do botão e renderiza
         const categoriaEscolhida = botao.getAttribute('data-category');
         renderizarProdutos(categoriaEscolhida);
     });
 });
 
 function sortearConsultora() {
-    // Sorteio interno 
     const indiceSorteado = Math.floor(Math.random() * consultoras.length);
     const consultora = consultoras[indiceSorteado];
 
-    // Altera o Título de acordo com o gênero
     const tituloModal = document.getElementById('modalConsultoraTitulo');
     if (consultora.genero === "feminino") {
         tituloModal.innerHTML = `Sua consultora é a <span id="consultoraNome">${consultora.nome}</span>`;
@@ -78,28 +76,10 @@ function sortearConsultora() {
         tituloModal.innerHTML = `Seu consultor é o <span id="consultorNome">${consultora.nome}</span>`;
     }
 
-    // Atualiza a Foto e o QR Code exato da pessoa sorteada
     document.getElementById('consultoraFoto').src = consultora.foto;
     document.getElementById('qrCodeFoco').src = consultora.qrCode;
-
-    // Monta a mensagem e o link do WhatsApp
-    const mensagemAutomatica = consultora.genero === 'feminino'
-        ? "Olá! Estava utilizando o totem e gostaria de falar com a farmacêutica."
-        : "Olá! Estava utilizando o totem e gostaria de falar com o farmacêutico.";
-
-    const btnWhats = document.getElementById('btnAbrirWhatsapp');
-    btnWhats.href = `https://wa.me/${consultora.whatsapp}?text=${encodeURIComponent(mensagemAutomatica)}`;
-
-    // Exibe na tela
     modal.classList.add('active');
 }
-
-// EVENTOS DO MODAL
-btnSorteio.addEventListener('click', sortearConsultora);
-
-fecharModalBtn.addEventListener('click', () => {
-    modal.classList.remove('active');
-});
 
 // Inicia a tela mostrando todos os produtos
 renderizarProdutos('todos');
@@ -155,7 +135,20 @@ window.addEventListener('touchstart', resetarTemporizador);
 window.addEventListener('click', resetarTemporizador);
 
 // Inicia o contador assim que a página carrega
-resetarTemporizador();
+function resetarTemporizador() {
+    clearTimeout(tempoInativo);
+
+    // Adicionado verificação de segurança 
+    if (telaVideo) {
+        telaVideo.style.display = 'none';
+    }
+
+    tempoInativo = setTimeout(() => {
+        if (telaVideo) {
+            telaVideo.style.display = 'flex';
+        }
+    }, tempoLimite);
+}
 
 // CONTROLE DO AVISO DO MASCOTE
 const mascoteAviso = document.getElementById('mascoteAviso');

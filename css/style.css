@@ -35,10 +35,12 @@ body {
 }
 
 /* Cabeçalho Fixo */
+/* Cabeçalho Fixo */
 .kiosk-header {
     background-color: var(--roval-white);
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 1.5rem 3rem;
     border-bottom: 3px solid var(--roval-red);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -48,6 +50,9 @@ body {
 .kiosk-header .logo {
     height: 60px;
     object-fit: contain;
+    position: absolute;
+    /* Prende a logo na esquerda sem atrapalhar o texto */
+    left: 3rem;
 }
 
 .kiosk-header h1 {
@@ -55,9 +60,6 @@ body {
     color: var(--roval-red);
     font-weight: 600;
     text-align: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 /* Corpo da aplicação */

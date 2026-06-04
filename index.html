@@ -30,7 +30,7 @@
                 </nav>
 
                 <button class="consultant-call-btn" id="btnSorteio">
-                    Falar com uma Consultora
+                    Falar com Consultor(a)
                 </button>
             </aside>
 
@@ -46,21 +46,21 @@
 
         </div>
     </div>
-   <div class="modal-overlay" id="modalConsultora">
+    <div class="modal-overlay" id="modalConsultora">
         <div class="modal-content">
             <button class="close-modal" id="fecharModal">&times;</button>
-            
-            <h2 id="modalConsultoraTitulo">Sua consultora é a <span id="consultoraNome">...</span></h2>
+
+            <h2 id="modalConsultoraTitulo">Quem vai falar com você é <span id="consultoraNome">...</span></h2>
             <img id="consultoraFoto" src="" alt="Consultor(a) Sorteado(a)" class="consultora-img">
-            
+
             <p>Aponte a câmera para o QR Code para iniciar o atendimento</p>
-            
+
             <div id="qrcode-container">
                 <img src="" alt="QR Code do Atendimento" id="qrCodeFoco">
             </div>
         </div>
     </div>
-    
+
     <div class="modal-overlay" id="modalProduto">
         <div class="modal-content product-detail-modal">
             <button class="close-modal" id="fecharModalProduto">&times;</button>
@@ -84,7 +84,10 @@
             <button class="fechar-aviso" id="fecharAviso">&times;</button>
         </div>
     </div>
-
+    <div id="telaVideoDescanso"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; z-index: 9999; justify-content: center; align-items: center;">
+        <h1 style="color: white;">Espaço para o Vídeo</h1>
+    </div>
     <script src="js/main.js"></script>
 </body>
 
